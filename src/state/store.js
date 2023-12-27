@@ -1,6 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import applyJobSlice from "./applyJob/applyJobSlice";
+import jobDetailsSlice from "./jobs/jobDetailsSlice";
+import jobsSlice from "./jobs/jobsSlice";
 import authSlice from "./reducers/auth/authSlice";
 import registerSlice from './reducers/auth/registerSlice';
 const persistConfig = {
@@ -12,6 +15,9 @@ const combinedReducer = {
   
   user: persistedReducer,
   register: registerSlice,
+  jobs:jobsSlice,
+  jobDetails:jobDetailsSlice,
+  apply:applyJobSlice,
 
 };
 const middlewares = [];

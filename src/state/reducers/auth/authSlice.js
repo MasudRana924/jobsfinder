@@ -5,7 +5,7 @@ export const createUserLogin = createAsyncThunk(
   "user/login",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await publicPost("/auth/login", data);
+      const response = await publicPost("/user/login", data);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response);

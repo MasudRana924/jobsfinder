@@ -1,18 +1,22 @@
-import './App.css';
 import {
-  BrowserRouter as Router,
   Route,
+  BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
-import Register from './feature/auth/Register';
+import './App.css';
 import Login from './feature/auth/Login';
+import Register from './feature/auth/Register';
+import JobDetails from "./feature/jobs/JobDetails";
+import Main from "./feature/main/Main";
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
+             <Route path="/" element={<Main></Main>}></Route>
              <Route path="/register" element={<Register></Register>} />
-             <Route path="/login" element={<Login></Login>} />
+             <Route path="/user/login" element={<Login></Login>} />
+             <Route path="/job/:jobId" element={<JobDetails></JobDetails>}></Route>
         </Routes>
       </Router>
     </div>
