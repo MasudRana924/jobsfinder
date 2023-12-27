@@ -6,19 +6,19 @@ import jobDetailsSlice from "./jobs/jobDetailsSlice";
 import jobsSlice from "./jobs/jobsSlice";
 import authSlice from "./reducers/auth/authSlice";
 import registerSlice from './reducers/auth/registerSlice';
+import employerPendingJobsSlice  from "./employer/employerJobsSlice";
 const persistConfig = {
   key: "authentication",
   storage,
 };
 const persistedReducer = persistReducer(persistConfig, authSlice);
 const combinedReducer = {
-  
   user: persistedReducer,
   register: registerSlice,
   jobs:jobsSlice,
   jobDetails:jobDetailsSlice,
   apply:applyJobSlice,
-
+  pendingJob:employerPendingJobsSlice
 };
 const middlewares = [];
 if (process.env.NODE_ENV === "development") {

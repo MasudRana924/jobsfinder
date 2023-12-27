@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../state/reducers/auth/authSlice";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const dispatch=useDispatch()
@@ -68,15 +69,15 @@ export default function Navbar() {
                   aria-labelledby="user-menu-button"
                   tabindex="-1"
                 >
-                  <a
-                    href="#"
+                  <Link
+                    to="/employer/dashboard"
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                     tabindex="-1"
                     id="user-menu-item-0"
                   >
-                    My Profile
-                  </a>
+                    Dashboard
+                  </Link>
                   
                   <a
                     href="#"
