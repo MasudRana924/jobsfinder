@@ -11,7 +11,7 @@ function ApprovedJobs() {
     }, [dispatch, token]);
     const {data } = useSelector((state) => state.pendingJob.approvedJobs);
   return (
-    <div className="bg-violet-300 border-violet-300 rounded-lg h-24 w-full flex justify-center items-center mt-4">
+    <div className="bg-blue-500 border-blue-500 rounded-lg h-24 w-full flex justify-center items-center mt-4">
               <p className="text-white text-xl">{data?.length} Approved Jobs</p>
         </div>
   )

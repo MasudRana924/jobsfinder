@@ -38,4 +38,4 @@ const filterSlice = createSlice({
 });
 
 export default filterSlice.reducer;
-export const {citySelected,cityRemoved,categorySelected,categoryRemoved}=filterSlice
+export const {citySelected,cityRemoved,categorySelected,categoryRemoved}=filterSlice.actions
