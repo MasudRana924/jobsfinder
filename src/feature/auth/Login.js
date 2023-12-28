@@ -25,9 +25,10 @@ const Login = () => {
     <div className="flex flex-col justify-center items-center min-h-screen">
       <div className=" w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
         <div className="px-6 py-4">
+          <Link to="/">
           <h3 className="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">
-            Welcome Back
-          </h3>
+           Jobs Finder
+          </h3></Link>
 
           <form onSubmit={handleSubmit}>
             <div className="w-full mt-4">
