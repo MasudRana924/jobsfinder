@@ -4,8 +4,8 @@ import { getFilterJobs } from './filterApi';
 
 export const fetchFilterJobs = createAsyncThunk(
     'jobs/fetchfilterJobs',
-    async ({cities,categories}) => {
-        const jobs = await getFilterJobs(cities,categories);
+    async ({cities,categories,types,times}) => {
+        const jobs = await getFilterJobs(cities,categories,types,times);
         return jobs;
     }
 );

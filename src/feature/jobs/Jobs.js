@@ -9,11 +9,11 @@ import { fetchFilterJobs } from "../../state/filter/filterSlice";
 
 function Jobs() {
   const dispatch = useDispatch();
-  const { cities,categories } = useSelector((state) => state.filterSlice);
+  const { cities,categories,types,times } = useSelector((state) => state.filterSlice);
   useEffect(() => {
-    dispatch(fetchFilterJobs({categories,cities}));
+    dispatch(fetchFilterJobs({categories,cities,types,times}));
     
-  }, [dispatch,categories,cities]);
+  }, [dispatch,categories,cities,types,times]);
   const { data } = useSelector((state) => state.filter.filterJobs);
   return (
     <div className="  mx-auto w-full ">

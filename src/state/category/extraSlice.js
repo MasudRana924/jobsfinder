@@ -9,11 +9,20 @@ export const fetchCities = createAsyncThunk("jobs/fetchCities", async () => {
     const cities = await publicGet("/city/all");
     return cities;
   });
+  export const fetchTypes = createAsyncThunk("jobs/fetchTypes", async () => {
+    const types = await publicGet("/job/type");
+    return types;
+  });
+  export const fetchTimes = createAsyncThunk("jobs/fetchTimes", async () => {
+    const times = await publicGet("/job/time");
+    return times;
+  });
 export const categoriesSlice = createSlice({
   name: "categories",
   initialState: {
     categories: [],
     cities: [],
+    types:[],
     isLoading: false,
     isError: false,
 
@@ -44,6 +53,32 @@ export const categoriesSlice = createSlice({
       .addCase(fetchCities.rejected, (state, action) => {
         state.isLoading = true;
         state.cities = [];
+        state.isError = true;
+      })
+      .addCase(fetchTypes.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(fetchTypes.fulfilled, (state, action) => {
+        state.types = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchTypes.rejected, (state, action) => {
+        state.isLoading = true;
+        state.types = [];
+        state.isError = true;
+      })
+      .addCase(fetchTimes.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(fetchTimes.fulfilled, (state, action) => {
+        state.times = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchTimes.rejected, (state, action) => {
+        state.isLoading = true;
+        state.times = [];
         state.isError = true;
       })
   },
