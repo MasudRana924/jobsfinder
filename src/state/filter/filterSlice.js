@@ -15,7 +15,7 @@ export const filterJobsSlice = createSlice({
         filterJobs: [],
         isLoading: false,
         isError: false,
-        error: ''
+
     },
     extraReducers: (builder) => {
         builder
@@ -32,7 +32,6 @@ export const filterJobsSlice = createSlice({
                 state.isLoading = true
                 state.filterJobs = [];
                 state.isError = true;
-                state.error = action.payload.error?.message;
             })
     }
 });

@@ -2,19 +2,19 @@ import React, { useEffect } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchJobs } from "../../state/jobs/jobsSlice";
 import { formatDate } from "../../utilities/helper";
 import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
 import Stack from "@mui/material/Stack";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { fetchFilterJobs } from "../../state/filter/filterSlice";
+
 function Jobs() {
   const dispatch = useDispatch();
+  const { cities,categories } = useSelector((state) => state.filterSlice);
   useEffect(() => {
-    dispatch(fetchJobs());
-  }, [dispatch]);
-  const { data } = useSelector((state) => state.jobs.jobs);
+    dispatch(fetchFilterJobs({categories,cities}));
+    
+  }, [dispatch,categories,cities]);
+  const { data } = useSelector((state) => state.filter.filterJobs);
   return (
     <div className="  mx-auto w-full ">
       <h2 className="text-start text-2xl font-bold text-gray-900 mb-4 m-4 lg:m-4">

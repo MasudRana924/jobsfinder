@@ -38,7 +38,6 @@ function JobDetails() {
   const title=data?.title;
 //   const jobId=jobid
   const Data={companyName,title,jobId};
-  console.log(Data);
   const handleSubmit=(e)=>{
     e.preventDefault();
     dispatch(createApplyJob({

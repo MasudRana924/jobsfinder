@@ -4,9 +4,9 @@ import { cityRemoved, citySelected } from '../../state/filter/filterReducers';
 
 const Cities = ({name}) => {
     const dispatch = useDispatch();
-    const { cities } = useSelector((state) => state.categories);
+    const { cities } = useSelector((state) => state.filterSlice);
 
-    const isSelected =cities?.data.includes(name) ? true : false
+    const isSelected =cities.includes(name) ? true : false
 
     const style = isSelected ? 'text-slate-600  h-8 pt-1  text-start font-semibold  mt-1 ' : 'h-8  pt-1  text-start font-semibold text-slate-600 mt-1 '
     const handleSelect = () => {

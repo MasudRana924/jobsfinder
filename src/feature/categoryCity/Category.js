@@ -14,7 +14,7 @@ function Category() {
   const { categories, cities } = useSelector((state) => state.categories);
   return (
     <div className="w-full  ">
-      <div class="relative mt-6 w-3/4 mx-auto">
+      {/* <div class="relative mt-6 w-3/4 mx-auto">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
           <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
             <path
@@ -32,7 +32,7 @@ function Category() {
           class="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
           placeholder="Search"
         />
-      </div>
+      </div> */}
       <div className="w-3/4 mx-auto grid lg:grid-cols-2 gap-x-4">
         <div>
           <h3 className="text-start text-sm mt-6">Find by Category</h3>

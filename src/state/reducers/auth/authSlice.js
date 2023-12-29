@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { publicPost } from "../../../utilities/apiCaller";
+import { privatePut, publicPost } from "../../../utilities/apiCaller";
 
 export const createUserLogin = createAsyncThunk(
   "user/login",
@@ -12,7 +12,17 @@ export const createUserLogin = createAsyncThunk(
     }
   }
 );
-
+export const updateUserProfile = createAsyncThunk(
+  "user/updateProfile",
+  async ({ token, data }, { rejectWithValue }) => {
+    try {
+      const response = await privatePut("/user/update/profile", token, data);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response);
+    }
+  }
+);
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -21,27 +31,27 @@ const authSlice = createSlice({
     user: {},
     error: false,
     errorMessage: "",
-
+    updatedStudent:false
   },
   reducers: {
     login: (state, action) => {
       state.isAuthenticated = true;
       state.user = action.payload;
     },
-    logout: state => {
+    logout: (state) => {
       state.isAuthenticated = false;
       state.isLoading = false;
       state.user = {};
       state.error = false;
       state.errorMessage = "";
     },
-    errorClean: state => {
+    errorClean: (state) => {
       state.error = false;
       state.errorMessage = "";
-    }
+    },
   },
-  extraReducers: builder => {
-    builder.addCase(createUserLogin.pending, state => {
+  extraReducers: (builder) => {
+    builder.addCase(createUserLogin.pending, (state) => {
       state.isLoading = true;
       state.error = false;
     });
@@ -58,8 +68,24 @@ const authSlice = createSlice({
       state.error = true;
       state.errorMessage = action.payload.data.message;
     });
-    
-  }
+    builder.addCase(updateUserProfile.pending, (state) => {
+      state.isLoading = true;
+      state.error = false;
+    });
+    builder.addCase(updateUserProfile.fulfilled, (state, action) => {
+      const { user: previousUser } = state;
+      state.isLoading = false;
+      state.error = null;
+      state.updatedStudent = true;
+      state.user = { token: previousUser.token, ...action.payload };
+      state.errorMessage = "";
+    });
+    builder.addCase(updateUserProfile.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = true;
+      state.errorMessage = action.payload.data.message;
+    });
+  },
 });
 
 export const { login, logout, errorClean } = authSlice.actions;

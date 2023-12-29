@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../state/reducers/auth/authSlice";
 import { Link } from "react-router-dom";
-
 export default function Navbar() {
   const dispatch = useDispatch();
-  const { token,firstName,lastName } = useSelector((state) => state.user.user);
+  const { token, firstName, lastName ,role} = useSelector(
+    (state) => state.user.user
+  );
   const [active, setActive] = useState(false);
   const showMenu = () => {
     setActive(!active);
@@ -16,14 +17,16 @@ export default function Navbar() {
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative  flex h-16 items-center justify-between">
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="flex flex-shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company"
-              />
-               
-              </div>
+              <Link to="/">
+                <div className="flex flex-shrink-0 items-center">
+                  <img
+                    className="h-8 w-auto"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    alt="Your Company"
+                  />
+                  <p className="text-xl text-violet-500">CareerPulse</p>
+                </div>
+              </Link>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
@@ -47,30 +50,63 @@ export default function Navbar() {
               </button>
               <div className="relative ml-3">
                 <div>
-                  <button
+                  {/* <button
                     type="button"
-                    className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800
-                    bg-white p-2"
+                    className={token ? "relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 bg-white p-2":"w-24 "}
                     id="user-menu-button"
                     aria-expanded="false"
                     aria-haspopup="true"
                     onClick={showMenu}
                   >
-                    {/* <img
-                      className="h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    /> */}
                     {
-                      token && `${firstName.charAt(0)}` 
+                      token? `${firstName.charAt(0)} ${lastName.charAt(0)}` :<div>
+                       <p className="text-xs text-white">   Sign in / Register</p>
+                      </div>
                     }
-                    {
-                      token && `${lastName.charAt(0)}` 
-                    }
-                  </button>
+                  </button> */}
+                  {token ? (
+                    <button
+                      type="button"
+                      className={
+                        token
+                          ? "relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 bg-white p-2"
+                          : "w-24 "
+                      }
+                      id="user-menu-button"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      onClick={showMenu}
+                    >
+                      {token ? (
+                        `${firstName.charAt(0)} ${lastName.charAt(0)}`
+                      ) : (
+                        <div>
+                          <p className="text-xs text-white">
+                            {" "}
+                            Sign in / Register
+                          </p>
+                        </div>
+                      )}
+                    </button>
+                  ) : (
+                    <Link to="/user/login">
+                      <button
+                        type="button"
+                        className="w-24"
+                        id="user-menu-button"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                      >
+                        <p className="text-xs text-white">
+                          {" "}
+                          Sign in / Register
+                        </p>
+                      </button>
+                    </Link>
+                  )}
                 </div>
                 {/* menubar  */}
-                {token ? (
+                {token && role==="employer" ? (
                   <div
                     className={
                       active
@@ -115,16 +151,28 @@ export default function Navbar() {
                     aria-labelledby="user-menu-button"
                     tabindex="-1"
                   >
-                    <Link to="/user/login">
+                    <Link
+                      to="/my/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 text-start"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-0"
+                    >
+                      My Profile
+                    </Link>
+                   
+
+
                     <button
                       href="#"
-                      className=" w-3/4 mx-auto  rounded-lg px-4 py-2 text-sm text-gray-700 mb-4 mt-4"
+                      className=" bg-red-500 w-3/4 mx-auto border-red-500  rounded-lg px-4 py-2 text-sm text-gray-700 mb-4 mt-4"
                       role="menuitem"
                       tabindex="-1"
                       id="user-menu-item-2"
+                      onClick={() => dispatch(logout())}
                     >
-                      Sign in / Register
-                    </button></Link>
+                      Sign out
+                    </button>
                   </div>
                 )}
               </div>

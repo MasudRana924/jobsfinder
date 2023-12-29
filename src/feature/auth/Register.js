@@ -6,13 +6,15 @@ import { createUserRegister } from "../../state/reducers/auth/registerSlice";
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const registerSubmit = (e) => {
     e.preventDefault();
     const myForm = new FormData();
-    myForm.set("name", name);
+    myForm.set("firstName", firstName);
+    myForm.set("lastName", lastName);
     myForm.set("email", email);
     myForm.set("password", password);
     dispatch(createUserRegister(myForm));
@@ -20,26 +22,45 @@ const Register = () => {
   const { errorMessage, success } = useSelector((state) => state.register);
   useEffect(() => {
     if (success) {
-      navigate("/account/login");
+      navigate("/user/login");
     }
   }, [success, navigate]);
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <div className=" w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
         <div className="px-6 py-4">
-          <h3 className="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">
-            Welcome Back
-          </h3>
+        <div className=" w-2/4 mx-auto flex  items-center justify-center sm:items-stretch sm:justify-start">
+            <Link to="/">
+              <div className="flex flex-shrink-0 items-center">
+                <img
+                  className="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  alt="Your Company"
+                />
+                <p className="text-xl text-violet-500">CareerPulse</p>
+              </div>
+            </Link>
+          </div>
 
           <form onSubmit={registerSubmit}>
+            <div className="w-full mt-8">
+              <input
+                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                type="text"
+                placeholder="First Name"
+                aria-label="First Name"
+                required
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
             <div className="w-full mt-4">
               <input
                 className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 type="text"
-                placeholder="Full Name"
-                aria-label="Full Name"
+                placeholder="Last Name"
+                aria-label="Last Name"
                 required
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
             <div className="w-full mt-4">
