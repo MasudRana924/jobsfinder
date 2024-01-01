@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-900">
+    <footer className="w-full bg-white dark:bg-gray-900 mt-12">
       <div className="container px-6 py-8 mx-auto">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <div>
@@ -12,43 +12,43 @@ function Footer() {
 
             <a
               href="#"
-              className="text-start block mt-5 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline"
+              className="text-start block mt-5 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline"
             >
               Installation
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Release Notes
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Upgrade Guide
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Using with Preprocessors
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Optimizing for Production
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Browser Support
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               IntelliSense
             </a>
@@ -61,43 +61,43 @@ function Footer() {
 
             <a
               href="#"
-              className="text-start  block mt-5 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline"
+              className="text-start  block mt-5 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline"
             >
               Installation
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Release Notes
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Upgrade Guide
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Using with Preprocessors
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Optimizing for Production
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Browser Support
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               IntelliSense
             </a>
@@ -110,43 +110,43 @@ function Footer() {
 
             <a
               href="#"
-              className="text-start  block mt-5 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline"
+              className="text-start  block mt-5 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline"
             >
               Installation
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Release Notes
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Upgrade Guide
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Using with Preprocessors
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Optimizing for Production
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Browser Support
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               IntelliSense
             </a>
@@ -159,43 +159,43 @@ function Footer() {
 
             <a
               href="#"
-              className="text-start  block mt-5 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline"
+              className="text-start  block mt-5 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline"
             >
               Installation
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Release Notes
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Upgrade Guide
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Using with Preprocessors
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Optimizing for Production
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               Browser Support
             </a>
             <a
               href="#"
-              className="block mt-3 text-sm font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
+              className="block mt-3 text-md font-medium text-gray-500 duration-700 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-200 hover:underline text-start"
             >
               IntelliSense
             </a>
@@ -205,7 +205,7 @@ function Footer() {
         <hr className="my-10 border-gray-200 dark:border-gray-700 " />
 
         <div className="sm:flex sm:items-center sm:justify-between">
-          <p className="text-sm text-gray-400">
+          <p className="text-md text-gray-400">
             © Copyright 2021. All Rights Reserved.
           </p>
 

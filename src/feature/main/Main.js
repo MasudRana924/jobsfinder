@@ -7,7 +7,7 @@ import Category from "../categoryCity/Category";
 
 function Main() {
   return (
-    <div className="lg:w-3/4 mx-auto ">
+    <div className="w-full">
       <Navbar></Navbar>
       <Hero></Hero>
       <Category></Category>

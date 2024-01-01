@@ -1,74 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/common/Navbar";
-import { useLocation } from "react-router-dom";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload } from "antd";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateUserProfile } from "../../state/reducers/auth/authSlice";
 import Footer from "../../components/common/Footer";
-
-const EditProfile = () => {
+import { useLocation } from "react-router-dom";
+import { message } from 'antd';
+import { useDispatch, useSelector } from "react-redux";
+import { createUploadJob } from "../../state/create/createJobSlice";
+const CreateJob = () => {
   const { user } = useSelector((state) => state.user);
   const token=user?.token;
   const dispatch = useDispatch();
-  const location = useLocation();
-  const pathname = location.pathname;
-  const [fileName, setfileName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [degree, setDegree] = useState("");
-  const [education, setEduName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const props = {
-    name: "file",
-    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
-    headers: {
-      authorization: "authorization-text",
-    },
-    onChange(info) {
-      if (info.file.status !== "uploading") {
-        setfileName(info.file);
-      }
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} file uploaded successfully`);
-        setfileName(info.file);
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
-  const handleUpdateProfile = async (e) => {
+  const locationn = useLocation();
+  const pathname = locationn.pathname;
+  const [companyName, setCompanyName] = useState("");
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [vacancy, setVancancy] = useState("");
+  const [location, setLocation] = useState("");
+  const [city, setCity] = useState("");
+  const [type, setType] = useState("");
+  const [time, setTime] = useState("");
+  const [description, setDescription] = useState("");
+  const [salary, setSalary] = useState("");
+  const handleCreate = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
-    formData.append("phone", phone);
-    formData.append("address", address);
-    formData.append("education", education);
-    formData.append("degree", degree);
-     dispatch(updateUserProfile({ token,data:formData}));
+    const data={companyName,title,city,type,location,vacancy,category,time,description,salary};
+    console.log("data",data);
+    dispatch(createUploadJob({ token,data}));
   };
+  const { success } = useSelector((state) => state.uploadJob);
   useEffect(() => {
-    if (user) {
-      //   setAvatarPreview(user?.image);
-      setFirstName(user?.firstName);
-      setLastName(user?.lastName);
-      setEmail(user?.email);
-      setPhone(user?.phone );
-      setAddress(user?.address);
-      setDegree(user?.degree);
-      setEduName(user?.education);
+    if (success) {
+    message.info("You successfully post e job wait for approval")
     }
-  }, [user]);
-
- 
+  }, [success]);
 
   return (
-    <div className="">
+    <div className="w-full ">
       <Navbar></Navbar>
       <div className="flex items-center py-4 overflow-x-auto whitespace-nowrap">
         <a href="#" class="text-gray-600 dark:text-gray-200">
@@ -89,24 +56,24 @@ const EditProfile = () => {
       <div className="mt-12 lg:w-3/4 mx-auto">
         <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
           <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
-            Account Update
+            Create Job Post
           </h2>
 
-          <form className="" onSubmit={handleUpdateProfile}>
+          <form className="" onSubmit={handleCreate}>
             <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
               <div>
                 <label
                   className="text-gray-700 dark:text-gray-200"
                   for="emailAddress"
                 >
-                  Last Name
+                  Your Company Name
                 </label>
                 <input
                   id="emailAddress"
                   type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
                 />
               </div>
 
@@ -115,27 +82,27 @@ const EditProfile = () => {
                   className="text-gray-700 dark:text-gray-200"
                   for="emailAddress"
                 >
-                  Last Name
+                  Job Title Name
                 </label>
                 <input
                   id="emailAddress"
                   type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
 
               <div>
                 <label className="text-gray-700 dark:text-gray-200" for="Email">
-                  Email
+                  Category
                 </label>
                 <input
                   id="password"
-                  type="email"
+                  type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
                 />
               </div>
 
@@ -144,14 +111,14 @@ const EditProfile = () => {
                   className="text-gray-700 dark:text-gray-200"
                   for="passwordConfirmation"
                 >
-                  Phone
+                  Vacancy
                 </label>
                 <input
                   id="passwordConfirmation"
                   type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={vacancy}
+                  onChange={(e) => setVancancy(e.target.value)}
                 />
               </div>
               <div>
@@ -159,14 +126,14 @@ const EditProfile = () => {
                   className="text-gray-700 dark:text-gray-200"
                   for="passwordConfirmation"
                 >
-                  Address
+                  Location
                 </label>
                 <input
                   id="passwordConfirmation"
                   type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
               </div>
               <div>
@@ -174,14 +141,14 @@ const EditProfile = () => {
                   className="text-gray-700 dark:text-gray-200"
                   for="passwordConfirmation"
                 >
-                  Highest Degree
+                  City
                 </label>
                 <input
                   id="passwordConfirmation"
                   type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
-                  value={degree}
-                  onChange={(e) => setDegree(e.target.value)}
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
                 />
               </div>
               <div>
@@ -189,22 +156,61 @@ const EditProfile = () => {
                   className="text-gray-700 dark:text-gray-200"
                   for="passwordConfirmation"
                 >
-                  University Name
+                  Salary
                 </label>
                 <input
                   id="passwordConfirmation"
                   type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
-                  value={education}
-                  onChange={(e) => setEduName(e.target.value)}
+                  value={salary}
+                  onChange={(e) => setSalary(e.target.value)}
                 />
               </div>
-
-              <Upload {...props}>
-                <Button icon={<UploadOutlined />} className="mt-8">
-                  Click to Upload Resume
-                </Button>
-              </Upload>
+              <div>
+                <label
+                  className="text-gray-700 dark:text-gray-200"
+                  for="passwordConfirmation"
+                >
+                  Job Type
+                </label>
+                <input
+                  id="passwordConfirmation"
+                  type="text"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                />
+              </div>
+              <div>
+                <label
+                  className="text-gray-700 dark:text-gray-200"
+                  for="passwordConfirmation"
+                >
+                  Part Time / Full Time
+                </label>
+                <input
+                  id="passwordConfirmation"
+                  type="text"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                />
+              </div>
+              <div className="w-full">
+                <label
+                  className="text-gray-700 dark:text-gray-200"
+                  for="passwordConfirmation"
+                >
+                  Description
+                </label>
+                <input
+                  id="passwordConfirmation"
+                  type="text"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-teal-300 focus:ring-opacity-40 dark:focus:border-teal-300 focus:outline-none focus:ring"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
             </div>
 
             <div className="flex justify-end mt-12">
@@ -221,4 +227,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default CreateJob;

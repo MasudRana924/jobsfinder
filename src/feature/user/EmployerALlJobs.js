@@ -132,7 +132,7 @@ function EmployerALlJobs() {
             {data?.length} Jobs Found
           </h2>
           <button
-            className="bg-blue-500 h-6 text-xs w-20 border-blue-500 rounded-lg"
+            className="bg-teal-500 h-6 text-xs w-20 border-teal-500 rounded-lg"
             onClick={handleOpen}
           >
             Create Job
@@ -146,10 +146,10 @@ function EmployerALlJobs() {
               className="group border rounded-lg p-4"
             >
               <div className="flex gap-4 ">
-                <button className="h-10 w-10 bg-blue-500 border-blue-500 rounded-lg text-white text-xl font-semibold">
+                <button className="h-10 w-10 bg-teal-500 border-teal-500 rounded-lg text-white text-xl font-semibold">
                   {job.companyName.charAt(0)}
                 </button>
-                <h3 className=" text-start text-sm text-blue-500">
+                <h3 className=" text-start text-sm text-teal-500">
                   {job.companyName}
                 </h3>
               </div>
@@ -171,144 +171,13 @@ function EmployerALlJobs() {
                 </p>
               </div>
               {/* <div className="w-1/4 mt-2">
-            <button className="bg-blue-500 h-6 text-xs w-12 border-blue-500 rounded-lg" >Apply</button>
+            <button className="bg-teal-500 h-6 text-xs w-12 border-teal-500 rounded-lg" >Apply</button>
             </div> */}
             </Link>
           ))}
         </div>
       </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <form onSubmit={handleSubmit}>
-            <p className="text-blue-500 text-xl text-start">Upload a Job </p>
-            <div className="flex justify-between gap-4">
-              <div className="w-full mt-4">
-                <input
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-blue-600 dark:border-blue-600focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  placeholder="Company Name"
-                  aria-label="Company Name"
-                  required
-                  onChange={(e) => setcompanyName(e.target.value)}
-                />
-              </div>
-              <div className="w-full mt-4">
-                <input
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-blue-600 dark:border-blue-600focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  placeholder="Job Title"
-                  aria-label="Job Titile"
-                  required
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="flex justify-between gap-4">
-              <div className="w-full mt-4">
-                <input
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-blue-600 dark:border-blue-600focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  placeholder="Salary"
-                  aria-label="Salary"
-                  required
-                  onChange={(e) => setSalary(e.target.value)}
-                />
-              </div>
-              <div className="w-full mt-4">
-                <input
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-blue-600 dark:border-blue-600focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  placeholder="Vacancy"
-                  aria-label="Vacancy"
-                  required
-                  onChange={(e) => setVacancy(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="flex justify-between gap-4">
-              <div className="w-full mt-4">
-                <TextField
-                  id="standard-select-currency-native"
-                  select
-                  defaultValue="EUR"
-                  SelectProps={{
-                    native: true,
-                  }}
-                  variant="standard"
-                  className="bg-white w-full"
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  {types.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-              </div>
-              <div className="w-full mt-4">
-              <TextField
-                  id="standard-select-currency-native"
-                  select
-                  defaultValue="EUR"
-                  SelectProps={{
-                    native: true,
-                  }}
-                  variant="standard"
-                  className="bg-white w-full"
-                  onChange={(e) => setCity(e.target.value)}
-                >
-                   {cities.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-              </div>
-            </div>
-            <div className="">
-              <div className="w-full mt-4">
-               
-                <input
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-blue-600 dark:border-blue-600focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  placeholder="Location"
-                  aria-label="Location"
-                  required
-                  onChange={(e) => setLocation(e.target.value)}
-                />
-              </div>
-              <div className="w-full mt-4">
-                <TextArea
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-blue-600 dark:border-blue-600focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  placeholder="Description"
-                  aria-label="Description"
-                  required
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </div>
-            </div>
-
-            {/* {errorMessage ? (
-              <Alert
-                className="mt-4"
-                type="error"
-                message={errorMessage}
-                banner
-              />
-            ) : null} */}
-
-            <button className="w-1/4 mt-4 px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-              Post Job
-            </button>
-          </form>
-        </Box>
-      </Modal>
+      
     </div>
   );
 }

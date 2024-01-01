@@ -9,10 +9,10 @@ const initialState={
     success:false
 }
 export const createUploadJob=createAsyncThunk(
-    'job/uploadJob',async({Data,token}, { rejectWithValue })=>{
+    'job/uploadJob',async({data,token}, { rejectWithValue })=>{
 
         try {
-            const jobs = await privatePost('/job/create/new',token, Data);
+            const jobs = await privatePost('/job/create/new',token, data);
             return jobs;
         } catch (err) {
             return rejectWithValue(err);

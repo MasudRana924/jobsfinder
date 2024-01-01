@@ -1,20 +1,20 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchEmployerApprovedJobs } from '../../state/employer/employerJobsSlice';
+import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEmployerApprovedJobs } from "../../state/employer/employerJobsSlice";
 
 function ApprovedJobs() {
-    const dispatch = useDispatch();
-    const { token } = useSelector((state) => state.user.user);
-    useEffect(() => {
-        dispatch(fetchEmployerApprovedJobs({ token }));
-    }, [dispatch, token]);
-    const {data } = useSelector((state) => state.pendingJob.approvedJobs);
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.user.user);
+  useEffect(() => {
+    dispatch(fetchEmployerApprovedJobs({ token }));
+  }, [dispatch, token]);
+  const { data } = useSelector((state) => state.pendingJob.approvedJobs);
   return (
-    <div className="bg-blue-500 border-blue-500 rounded-lg h-24 w-full flex justify-center items-center mt-4">
-              <p className="text-white text-xl">{data?.length} Approved Jobs</p>
-        </div>
-  )
+    <div className="bg-teal-500 border-teal-500 rounded-lg h-24 w-full flex justify-center items-center mt-4">
+      <p className="text-white text-xl">{data?.length} Approved Jobs</p>
+    </div>
+  );
 }
 
-export default ApprovedJobs
+export default ApprovedJobs;

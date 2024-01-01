@@ -6,14 +6,15 @@ import { formatDate } from "../../utilities/helper";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { fetchFilterJobs } from "../../state/filter/filterSlice";
-
+import { FaBangladeshiTakaSign } from "react-icons/fa6";
 function Jobs() {
   const dispatch = useDispatch();
-  const { cities,categories,types,times } = useSelector((state) => state.filterSlice);
+  const { cities, categories, types, times } = useSelector(
+    (state) => state.filterSlice
+  );
   useEffect(() => {
-    dispatch(fetchFilterJobs({categories,cities,types,times}));
-    
-  }, [dispatch,categories,cities,types,times]);
+    dispatch(fetchFilterJobs({ categories, cities, types, times }));
+  }, [dispatch, categories, cities, types, times]);
   const { data } = useSelector((state) => state.filter.filterJobs);
   return (
     <div className="  mx-auto w-full ">
@@ -29,14 +30,14 @@ function Jobs() {
             className="group border rounded-lg p-4"
           >
             <div className="flex gap-4 ">
-              <button className="h-10 w-12 bg-blue-500 border-blue-500 rounded-lg text-white text-2xl font-semibold">
+              <button className="h-10 w-12 bg-teal-500 border-teal-500 rounded-lg text-white text-2xl font-semibold">
                 {job.companyName.charAt(0)}
               </button>
               <div>
-                <h3 className=" text-start text-sm text-blue-500">
+                <h3 className=" text-start text-sm text-teal-500">
                   {job.companyName}
                 </h3>
-                <h3 className=" text-start text-sm text-blue-500">
+                <h3 className=" text-start text-sm text-teal-500">
                   {formatDate(job.createdAt)}
                 </h3>
               </div>
@@ -44,29 +45,37 @@ function Jobs() {
             <h3 className="mt-4 text-start text-sm text-gray-700">
               {job.title}
             </h3>
-            <p className="mt-1 text-start text-lg font-medium text-gray-900">
+            {/* <p className="mt-1 text-start text-lg font-medium text-gray-900">
               <span className="text-xs text-gray-700">Salary</span> {job.salary}
-            </p>
+            </p> */}
             <p className="mt-1 text-start text-lg font-medium text-gray-900">
               <span className="text-xs text-gray-700">Vacancy</span>{" "}
               {job.vacancy}
             </p>
-            <div className="flex gap-2 mt-4">
-              <IoLocationOutline className=" text-xl text-gray-900"></IoLocationOutline>
+            <div className="md:flex gap-4">
+              <div className="flex gap-2 mt-4 bg-teal-300 border border-teal-300 rounded-lg p-1">
+                <p className="text-start text-sm  text-gray-900">{job.type}</p>
+              </div>
+
+              <div className="flex gap-2 mt-4 border border-teal-500 rounded-lg p-1">
+                <IoLocationOutline className=" text-xl text-gray-900"></IoLocationOutline>
+                <p className="text-start text-sm  text-gray-900">
+                  {job.location}
+                </p>
+              </div>
+              
+            <div className="flex gap-2 mt-4 bg-teal-300 border border-teal-300 rounded-lg p-1">
+              <FaBangladeshiTakaSign className=" text-xl text-gray-900"></FaBangladeshiTakaSign>
               <p className="text-start text-sm  text-gray-900">
-                {job.location}
+                {job.salary} per month
               </p>
             </div>
-            <div className="w-1/4 mt-2">
-              <button className="bg-blue-500 h-6 text-xs w-full border-blue-500 rounded-lg">
-                Apply
-              </button>
             </div>
           </Link>
         ))}
       </div>
-      <Stack spacing={2} className="lg:w-2/4 mx-auto mt-6">
-            <Pagination count={10} color="primary" />
+      <Stack spacing={2} className="lg:w-1/4 mx-auto mt-12">
+        <Pagination count={5} color="primary" />
       </Stack>
     </div>
   );

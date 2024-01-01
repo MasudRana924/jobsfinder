@@ -11,6 +11,11 @@ export default function Navbar() {
   const showMenu = () => {
     setActive(!active);
   };
+  const handleLogout=()=>{
+    // () => dispatch(logout())
+    dispatch(logout());
+    setActive(false);
+  }
   return (
     <div>
       <nav className="bg-gray-800">
@@ -119,6 +124,15 @@ export default function Navbar() {
                     tabindex="-1"
                   >
                     <Link
+                      to="/create/job"
+                      className="block px-4 py-2 text-sm text-gray-700 text-start"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-0"
+                    >
+                    Profile
+                    </Link>
+                    <Link
                       to="/employer/dashboard"
                       className="block px-4 py-2 text-sm text-gray-700 text-start"
                       role="menuitem"
@@ -127,6 +141,15 @@ export default function Navbar() {
                     >
                       Dashboard
                     </Link>
+                    <Link
+                      to="/create/job"
+                      className="block px-4 py-2 text-sm text-gray-700 text-start"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-0"
+                    >
+                      Create a Job Post
+                    </Link>
 
                     <button
                       href="#"
@@ -134,7 +157,7 @@ export default function Navbar() {
                       role="menuitem"
                       tabindex="-1"
                       id="user-menu-item-2"
-                      onClick={() => dispatch(logout())}
+                      onClick={handleLogout}
                     >
                       Sign out
                     </button>
@@ -169,7 +192,7 @@ export default function Navbar() {
                       role="menuitem"
                       tabindex="-1"
                       id="user-menu-item-2"
-                      onClick={() => dispatch(logout())}
+                      onClick={handleLogout}
                     >
                       Sign out
                     </button>
