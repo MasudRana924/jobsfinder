@@ -110,7 +110,7 @@ export default function Navbar() {
                   )}
                 </div>
                 {/* menubar  */}
-                {token && role === "employer" ? (
+                {token && role === "employer" && (
                   <div
                     className={
                       active
@@ -161,8 +161,9 @@ export default function Navbar() {
                       Sign out
                     </button>
                   </div>
-                ) : (
-                  <div
+                )}
+                {
+                  role === "user" && (<div
                     className={
                       active
                         ? "absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -182,6 +183,15 @@ export default function Navbar() {
                     >
                       My Profile
                     </Link>
+                    <Link
+                      to="/user/update-password"
+                      className="block px-4 py-2 text-sm text-gray-700 text-start"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-0"
+                    >
+                      Update Password
+                    </Link>
 
                     <button
                       href="#"
@@ -193,8 +203,8 @@ export default function Navbar() {
                     >
                       Sign out
                     </button>
-                  </div>
-                )}
+                  </div>)
+                }
                 {role === "admin" && (
                   <div
                     className={

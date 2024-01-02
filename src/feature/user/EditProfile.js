@@ -1,8 +1,6 @@
 import React from "react";
 import Navbar from "../../components/common/Navbar";
 import { useLocation } from "react-router-dom";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload } from "antd";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +14,6 @@ const EditProfile = () => {
   const location = useLocation();
   const pathname = location.pathname;
   const [resume, setResume] = useState();
-  const [resumePreview, setResumePreview] = useState();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
