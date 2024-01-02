@@ -117,7 +117,7 @@ const AdminDashboard = () => {
                             <td className="px-4 py-4 text-sm whitespace-nowrap">
                               <button
                                 className="px-1 py-1 bg-teal-500 border border-teal-500 text-white w-16 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-teal-500"
-                                onClick={() => handleUpdate(dt._id)}
+                                onClick={() => handleUpdate(dt.jobId)}
                               >
                                 save
                               </button>
