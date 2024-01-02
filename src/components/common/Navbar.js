@@ -4,18 +4,17 @@ import { logout } from "../../state/reducers/auth/authSlice";
 import { Link } from "react-router-dom";
 export default function Navbar() {
   const dispatch = useDispatch();
-  const { token, firstName, lastName ,role} = useSelector(
+  const { token, firstName, lastName, role } = useSelector(
     (state) => state.user.user
   );
   const [active, setActive] = useState(false);
   const showMenu = () => {
     setActive(!active);
   };
-  const handleLogout=()=>{
-    // () => dispatch(logout())
+  const handleLogout = () => {
     dispatch(logout());
     setActive(false);
-  }
+  };
   return (
     <div>
       <nav className="bg-gray-800">
@@ -111,7 +110,7 @@ export default function Navbar() {
                   )}
                 </div>
                 {/* menubar  */}
-                {token && role==="employer" ? (
+                {token && role === "employer" ? (
                   <div
                     className={
                       active
@@ -130,7 +129,7 @@ export default function Navbar() {
                       tabindex="-1"
                       id="user-menu-item-0"
                     >
-                    Profile
+                      Profile
                     </Link>
                     <Link
                       to="/employer/dashboard"
@@ -183,9 +182,40 @@ export default function Navbar() {
                     >
                       My Profile
                     </Link>
-                   
 
-
+                    <button
+                      href="#"
+                      className=" bg-red-500 w-3/4 mx-auto border-red-500  rounded-lg px-4 py-2 text-sm text-gray-700 mb-4 mt-4"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-2"
+                      onClick={handleLogout}
+                    >
+                      Sign out
+                    </button>
+                  </div>
+                )}
+                {role === "admin" && (
+                  <div
+                    className={
+                      active
+                        ? "absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        : "hidden"
+                    }
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="user-menu-button"
+                    tabindex="-1"
+                  >
+                    <Link
+                      to="/admin/dashboard"
+                      className="block px-4 py-2 text-sm text-gray-700 text-start"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-0"
+                    >
+                      Dashboard
+                    </Link>
                     <button
                       href="#"
                       className=" bg-red-500 w-3/4 mx-auto border-red-500  rounded-lg px-4 py-2 text-sm text-gray-700 mb-4 mt-4"

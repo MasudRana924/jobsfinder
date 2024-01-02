@@ -1,4 +1,4 @@
-import { Alert } from "antd";
+import { Alert, message } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -18,7 +18,15 @@ const Login = () => {
   const { errorMessage, isAuthenticated } = useSelector((state) => state.user);
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/");
+      // navigate("/");
+      // Show success message
+      message.info("You are Loggedin");
+      // Navigate after 1 second
+      const timerId = setTimeout(() => {
+          navigate('/');
+      }, 1000);
+      // Cleanup the timer to avoid memory leaks
+      return () => clearTimeout(timerId);
     }
   }, [isAuthenticated, navigate]);
   return (

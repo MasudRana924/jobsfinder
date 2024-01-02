@@ -11,11 +11,12 @@ import Footer from "../../components/common/Footer";
 
 const EditProfile = () => {
   const { user } = useSelector((state) => state.user);
-  const token=user?.token;
+  const token = user?.token;
   const dispatch = useDispatch();
   const location = useLocation();
   const pathname = location.pathname;
-  const [fileName, setfileName] = useState("");
+  const [resume, setResume] = useState();
+  const [resumePreview, setResumePreview] = useState();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,24 +24,21 @@ const EditProfile = () => {
   const [education, setEduName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const props = {
-    name: "file",
-    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
-    headers: {
-      authorization: "authorization-text",
-    },
-    onChange(info) {
-      if (info.file.status !== "uploading") {
-        setfileName(info.file);
-      }
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} file uploaded successfully`);
-        setfileName(info.file);
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
+  const updateProfileDataChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setResume(selectedFile);
   };
+  // const updateProfileDataChange = (e) => {
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       setResumePreview(reader.result);
+  //       setResume(e.target.files[0]);
+  //     }
+  //   };
+  //   reader.readAsDataURL(e.target.files[0]);
+  // };
+
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -50,22 +48,22 @@ const EditProfile = () => {
     formData.append("address", address);
     formData.append("education", education);
     formData.append("degree", degree);
-     dispatch(updateUserProfile({ token,data:formData}));
+    formData.append("resume", resume);
+    dispatch(updateUserProfile({ token, data: formData }));
   };
   useEffect(() => {
     if (user) {
-      //   setAvatarPreview(user?.image);
+      setResume(user?.resume);
       setFirstName(user?.firstName);
       setLastName(user?.lastName);
       setEmail(user?.email);
-      setPhone(user?.phone );
+      setPhone(user?.phone);
       setAddress(user?.address);
       setDegree(user?.degree);
       setEduName(user?.education);
+      setResume(user?.resume);
     }
   }, [user]);
-
- 
 
   return (
     <div className="">
@@ -199,12 +197,27 @@ const EditProfile = () => {
                   onChange={(e) => setEduName(e.target.value)}
                 />
               </div>
-
-              <Upload {...props}>
-                <Button icon={<UploadOutlined />} className="mt-8">
-                  Click to Upload Resume
-                </Button>
-              </Upload>
+              <div className="mt-8">
+                
+              {user?.resume && (
+        <iframe
+          title="Resume PDF"
+          width="100%"
+          height="200px"
+          src={user?.resume}
+          type="application/pdf"
+          className="mb-8"
+        >
+          Your browser does not support PDFs.
+        </iframe>
+      )}
+                <input
+                  type="file"
+                  id="direct-upload-input"
+                  onChange={updateProfileDataChange}
+                  accept="application/pdf"
+                />
+              </div>
             </div>
 
             <div className="flex justify-end mt-12">

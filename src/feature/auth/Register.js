@@ -1,4 +1,4 @@
-import { Alert } from 'antd';
+import { Alert, message } from 'antd';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,7 +22,15 @@ const Register = () => {
   const { errorMessage, success } = useSelector((state) => state.register);
   useEffect(() => {
     if (success) {
-      navigate("/user/login");
+      // Show success message
+      message.info("Registration successful");
+      // Navigate after 1 second
+      const timerId = setTimeout(() => {
+          navigate('/user/login');
+      }, 1000);
+      // Cleanup the timer to avoid memory leaks
+      return () => clearTimeout(timerId);
+  
     }
   }, [success, navigate]);
   return (

@@ -100,7 +100,7 @@ const EmployerJosList = () => {
                         </button>
                       </td>
                     </tr> */}
-                    {data.map((dt) => (
+                    {data?.map((dt) => (
                       <tr>
                         <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                           <div>

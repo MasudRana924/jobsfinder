@@ -11,7 +11,8 @@ import categoriesSlice  from "./category/extraSlice";
 import filterSlice from "./filter/filterReducers";
 import filterJobsSlice  from "./filter/filterSlice";
 import uploadedJobSlice from './create/createJobSlice'
-
+import  adminJobsSlice  from "./admin/adminAllJobSlice";
+import updateJobStatusSlice from './admin/upDateSlice'
 const persistConfig = {
   key: "authentication",
   storage,
@@ -27,7 +28,9 @@ const combinedReducer = {
   categories:categoriesSlice,
   filterSlice:filterSlice,
   filter:filterJobsSlice,
-  uploadJob:uploadedJobSlice
+  uploadJob:uploadedJobSlice,
+  admin:adminJobsSlice,
+  updatedStatus:updateJobStatusSlice,
 };
 const middlewares = [];
 if (process.env.NODE_ENV === "development") {

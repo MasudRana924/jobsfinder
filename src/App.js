@@ -15,6 +15,7 @@ import EmployerRegister from "./feature/auth/EmployerRegister";
 import CreateJob from "./feature/jobs/CreateJob";
 import { useEffect, useState } from "react";
 import Preloader from "./components/loader/Preloader";
+import AdminDashboard from "./feature/admin/AdminDashboard";
 function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
              <Route path="/employer/login" element={<EmployerLogin></EmployerLogin>}></Route>
              <Route path="/employer/registration" element={<EmployerRegister></EmployerRegister>}></Route>
              <Route path="/create/job" element={<CreateJob></CreateJob>}></Route>
+             <Route path="/admin/dashboard" element={<AdminDashboard></AdminDashboard>}></Route>
         </Routes>
       </Router>
     </div>}

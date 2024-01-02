@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { privatePut, publicPost } from "../../../utilities/apiCaller";
+import { privatePut, publicPost,privatePutFile } from "../../../utilities/apiCaller";
 
 export const createUserLogin = createAsyncThunk(
   "user/login",
@@ -16,7 +16,8 @@ export const updateUserProfile = createAsyncThunk(
   "user/updateProfile",
   async ({ token, data }, { rejectWithValue }) => {
     try {
-      const response = await privatePut("/user/update/profile", token, data);
+      // const response = await privatePut("/user/update/profile", token, data);
+      const response = await privatePutFile("/user/update/profile", token, data);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response);
