@@ -7,23 +7,35 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { fetchFilterJobs } from "../../state/filter/filterSlice";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import { useState } from "react";
 function Jobs() {
   const dispatch = useDispatch();
   const { cities, categories, types, times } = useSelector(
     (state) => state.filterSlice
   );
+
+  const { data } = useSelector((state) => state.filter.filterJobs);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+  const totalItems = data?.totalJobs;
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+    dispatch(
+      fetchFilterJobs({ categories, cities, types, times, page: newPage })
+    );
+  };
   useEffect(() => {
     dispatch(fetchFilterJobs({ categories, cities, types, times }));
   }, [dispatch, categories, cities, types, times]);
-  const { data } = useSelector((state) => state.filter.filterJobs);
+
   return (
     <div className="  mx-auto w-full ">
       <h2 className="text-start text-2xl font-bold text-gray-900 mb-4 m-4 lg:m-4">
-        {data?.length} Jobs Found
+        {data?.totalJobs} Jobs Found
       </h2>
 
       <div className=" grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 xl:gap-x-8 m-4">
-        {data?.map((job) => (
+        {data?.jobs?.map((job) => (
           <Link
             key={job.id}
             to={`/job/${job.jobId}`}
@@ -45,9 +57,6 @@ function Jobs() {
             <h3 className="mt-4 text-start text-sm text-gray-700">
               {job.title}
             </h3>
-            {/* <p className="mt-1 text-start text-lg font-medium text-gray-900">
-              <span className="text-xs text-gray-700">Salary</span> {job.salary}
-            </p> */}
             <p className="mt-1 text-start text-lg font-medium text-gray-900">
               <span className="text-xs text-gray-700">Vacancy</span>{" "}
               {job.vacancy}
@@ -63,19 +72,24 @@ function Jobs() {
                   {job.location}
                 </p>
               </div>
-              
-            <div className="flex gap-2 mt-4 bg-teal-300 border border-teal-300 rounded-lg p-1">
-              <FaBangladeshiTakaSign className=" text-xl text-gray-900"></FaBangladeshiTakaSign>
-              <p className="text-start text-sm  text-gray-900">
-                {job.salary} per month
-              </p>
-            </div>
+
+              <div className="flex gap-2 mt-4 bg-teal-300 border border-teal-300 rounded-lg p-1">
+                <FaBangladeshiTakaSign className=" text-xl text-gray-900"></FaBangladeshiTakaSign>
+                <p className="text-start text-sm  text-gray-900">
+                  {job.salary} per month
+                </p>
+              </div>
             </div>
           </Link>
         ))}
       </div>
       <Stack spacing={2} className="lg:w-1/4 mx-auto mt-12">
-        <Pagination count={5} color="primary" />
+        <Pagination
+          count={Math.ceil(totalItems / itemsPerPage)}
+          page={currentPage}
+          color="primary"
+          onChange={handlePageChange}
+        />
       </Stack>
     </div>
   );

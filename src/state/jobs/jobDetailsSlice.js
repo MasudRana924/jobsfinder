@@ -11,8 +11,8 @@ const initialState = {
 }
 export const fetchJobDetails = createAsyncThunk(
     'job/fetchJobDetails',
-    async (id) => {
-        const job = await publicGetSingle(`/job/get/${id}`);
+      async (jobId) => {
+        const job = await publicGetSingle(`/job/get/${jobId}`);
         return job
     }
 );

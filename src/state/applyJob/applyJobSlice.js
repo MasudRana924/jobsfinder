@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { privatePost } from "../../utilities/apiCaller";
+import { privatePost,privatePostFile } from "../../utilities/apiCaller";
 const initialState={
    applyJob:[],
     isLoading:false,
@@ -11,7 +11,8 @@ export const createApplyJob=createAsyncThunk(
     'job/applyJob',async({Data,token}, { rejectWithValue })=>{
 
         try {
-            const bookingss = await privatePost('/user/apply/job',token, Data);
+            // const bookingss = await privatePost('/user/apply/job',token, Data);
+            const bookingss = await privatePostFile('/user/apply/job',token, Data);
             return bookingss;
         } catch (err) {
             return rejectWithValue(err);

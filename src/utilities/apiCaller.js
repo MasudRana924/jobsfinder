@@ -42,6 +42,11 @@ export const privatePutFile = async (endpoint, token, body) => {
   const response = await axios.put(`${api}${endpoint}`, body, fileConfig);
   return response.data;
 };
+export const privatePostFile = async (endpoint, token, body) => {
+  fileConfig.headers.token = `${token}`;
+  const response = await axios.post(`${api}${endpoint}`, body, fileConfig);
+  return response.data;
+};
 
 export const privatePut = async (endpoint, token, body) => {
   config.headers.token = `${token}`;
